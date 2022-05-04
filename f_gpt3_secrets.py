@@ -48,7 +48,7 @@ def reduce_tokens_for_gpt3(input_text_gpt3):
     dots_idx = find_words_endswith_dot(input_text_gpt3)
     for id in dots_idx:
         number_tokens_text = get_number_of_tokens(input_text_gpt3[:id+1])
-        if number_tokens_text < st.secrets["GPT3"]["MAX_TOKENS"]:
+        if number_tokens_text < st.secrets["MAX_TOKENS"]:
             best_id_dot = id
 
     if best_id_dot != 0:
@@ -58,7 +58,7 @@ def reduce_tokens_for_gpt3(input_text_gpt3):
     else: # if text dont have period ---> force reduce
         reduce_text = ""
         for word in input_text_gpt3.split(" "):
-            if get_number_of_tokens(reduce_text) < st.secrets["GPT3"]["MAX_TOKENS"] - 1:
+            if get_number_of_tokens(reduce_text) < st.secrets["MAX_TOKENS"] - 1:
                 reduce_text  = reduce_text + " " +  word
             else:
                 break
@@ -70,7 +70,7 @@ def get_number_of_tokens(text):
 #--------------------------------------------------------------------------------
 # Main function
 def get_ingerence_GPT3(input_text, MODE, ENGINE):
-    # number of tokens would be less than st.secrets["GPT3"]["MAX_TOKENS"]
+    # number of tokens would be less than st.secrets["MAX_TOKENS"]
     reduce_text = reduce_tokens_for_gpt3(input_text)
 
     # define prompt
