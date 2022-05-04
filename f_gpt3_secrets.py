@@ -11,7 +11,7 @@ import streamlit as st
 
 
 # instance tokenizer & api
-openai.api_key = st.secrets["GPT3"]["OPENAI_API_KEY"] #os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets["OPENAI_API_KEY"] #os.getenv("OPENAI_API_KEY")["GPT3"]
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
 #--------------------------------------------------------------------------------
